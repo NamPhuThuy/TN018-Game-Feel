@@ -69,10 +69,12 @@ namespace NamPhuThuy
             float side = Vector3.Dot(toMouse, transform.right);
 
             // Calculate shoot direction: always forward, but offset to left/right based on mouse
-            // Vector3 shootDir = (transform.forward + transform.right * Mathf.Sign(side)).normalized;
             Vector3 shootDir = (transform.forward).normalized;
 
-            GameObject projectile = Instantiate(projectilePrefab, shootPivot.transform.position, Quaternion.LookRotation(shootDir));
+            //Quaternion.LookRotation(shootDir)
+            GameObject projectile = Instantiate(projectilePrefab, shootPivot.transform.position, Quaternion.identity);
+            
+            projectile.transform.localEulerAngles = new Vector3(90f, 0f, 90f);
             Rigidbody rb = projectile.GetComponent<Rigidbody>();
             if (rb != null)
             {
