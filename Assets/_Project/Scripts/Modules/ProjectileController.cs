@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,14 +21,20 @@ namespace NamPhuThuy
 
         #region MonoBehaviour Callbacks
 
-        void Start()
+        private void Update()
         {
-            
+            if (Vector3.Distance(transform.position, GamePlayManager.Instance.playerController.transform.position) > 30f)
+            {
+                Destroy(gameObject);
+            }
         }
 
-        void Update()
+        private void OnTriggerEnter(Collider other)
         {
-            
+            if (other.CompareTag(ConstTag.ENEMY))
+            {
+                Destroy(gameObject);
+            }
         }
 
         #endregion

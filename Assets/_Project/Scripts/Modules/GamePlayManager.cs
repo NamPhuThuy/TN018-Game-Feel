@@ -11,7 +11,7 @@ namespace NamPhuThuy
     public class GamePlayManager : Singleton<GamePlayManager>
     {
         #region Private Serializable Fields
-
+        public PlayerController playerController;
         [SerializeField] private List<EnemyController> enemyList;
         #endregion
 

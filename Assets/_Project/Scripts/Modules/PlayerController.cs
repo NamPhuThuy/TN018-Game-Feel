@@ -14,6 +14,10 @@ namespace NamPhuThuy
 
         [SerializeField] EnemyController closestEnemy;
         
+        [Header("Stats")]
+        [SerializeField] private float fireRate = 2f; //shots per sec
+        private float fireTimer = 0f;
+        
         #endregion
 
         #region Public Fields
@@ -34,16 +38,18 @@ namespace NamPhuThuy
 
         void Update()
         {
-            if (Input.GetMouseButtonDown(0))
+            fireTimer -= Time.deltaTime;
+            if (fireTimer <= 0f)
             {
                 ShootTowardsMouse();
+                fireTimer = 1f / fireRate;
             }
             
             closestEnemy = GamePlayManager.Instance.GetClosestEnemy(transform.position);
             if (closestEnemy != null)
             {
                 Vector3 lookPos = closestEnemy.transform.position - transform.position;
-                lookPos.y = 0; // Optional: keep only horizontal rotation
+                // lookPos.y = 0; // Optional: keep only horizontal rotation
                 if (lookPos != Vector3.zero)
                     transform.rotation = Quaternion.LookRotation(lookPos);
             }
@@ -83,7 +89,7 @@ namespace NamPhuThuy
 
         public void ResetValues()
         {
-            
+            fireRate = 8f; // Reset to default value
         }
 
         #endregion
