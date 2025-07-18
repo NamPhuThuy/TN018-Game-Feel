@@ -20,6 +20,9 @@ namespace NamPhuThuy
         [Header("SFX")]
         [SerializeField] private AudioClip shootSFX;
         [SerializeField] private AudioSource audioSource;
+        
+        [Header("VFX")]
+        [SerializeField] private ParticleSystem muzzleFlash;
         #endregion
 
         #region Private Fields
@@ -78,6 +81,11 @@ namespace NamPhuThuy
         public void PlayShootSFX()
         {
             audioSource.PlayOneShot(shootSFX);
+        }
+        
+        public void PlayMuzzleFlash()
+        {
+            muzzleFlash.Play();
         }
         
         #endregion

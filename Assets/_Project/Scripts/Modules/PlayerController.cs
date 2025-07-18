@@ -46,6 +46,8 @@ namespace NamPhuThuy
                 DropShell();
                 gunController.ActiveRecoilEffect(); 
                 gunController.PlayShootSFX();
+                gunController.PlayMuzzleFlash();
+                
                 fireTimer = 1f / fireRate;
             }
             
