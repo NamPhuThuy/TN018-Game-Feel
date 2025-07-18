@@ -22,11 +22,11 @@ namespace NamPhuThuy
 
         #region Public Fields
         
-        public GameObject gunGameObj;
+        public GunController gunController;
         public GameObject shootPivot;
         
         public GameObject projectilePrefab;
-        public GameObject bulletShellPrefab;
+        public ShellController bulletShellPrefab;
         
         #endregion
 
@@ -44,7 +44,7 @@ namespace NamPhuThuy
             {
                 ShootTowardsMouse();
                 DropShell();
-                // ActiveRecoilEffect();
+                gunController.ActiveRecoilEffect(); 
                 fireTimer = 1f / fireRate;
             }
             
@@ -92,15 +92,15 @@ namespace NamPhuThuy
         {
             if (bulletShellPrefab == null) return;
             
-            GameObject shell = Instantiate(bulletShellPrefab, shootPivot.transform.position, Quaternion.identity, GamePlayManager.Instance.shellContainer.transform);
+            ShellController shell = Instantiate(bulletShellPrefab, shootPivot.transform.position, Quaternion.identity, GamePlayManager.Instance.shellContainer.transform);
             shell.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
 
             // Calculate end position (eject to the side, then drop)
             Vector3 sideEjectDir = transform.right * Random.Range(0.5f, 1.5f); // Randomize side push
-            Vector3 forwardEjectDir = transform.forward * Random.Range(-0.5f, -0.5f); // Optional: add some forward push
+            Vector3 forwardEjectDir = transform.forward * Random.Range(-.6f, .6f); // Optional: add some forward push
             Vector3 end = shootPivot.transform.position + sideEjectDir + forwardEjectDir + Vector3.down * 0.3f;
 
-            StartCoroutine(EjectShellBezier(shell, shootPivot.transform.position, end, 1f, 0.3f));
+            StartCoroutine(EjectShellBezier(shell.gameObject, shootPivot.transform.position, end, 1f, 0.3f));
         }
         
         private IEnumerator EjectShellBezier(GameObject shell, Vector3 start, Vector3 end, float height, float duration)

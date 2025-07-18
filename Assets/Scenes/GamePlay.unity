@@ -1182,11 +1182,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   closestEnemy: {fileID: 0}
   fireRate: 8
-  gunGameObj: {fileID: 1056334577}
+  gunController: {fileID: 1056334578}
   shootPivot: {fileID: 1181369228}
   projectilePrefab: {fileID: 8211813555336685281, guid: 6bd18011d42fbf943abe017a3d3a9840,
     type: 3}
-  bulletShellPrefab: {fileID: 361543533756627197, guid: c7704bd567b3bd140b06be95fde8d917,
+  bulletShellPrefab: {fileID: 3944500108563112206, guid: c7704bd567b3bd140b06be95fde8d917,
     type: 3}
 --- !u!1001 &564633482
 PrefabInstance:
@@ -2223,7 +2223,11 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1181369229}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6c8f1e2f6a674b7418f206d730b4b604,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1056334578}
   m_SourcePrefab: {fileID: 100100000, guid: 6c8f1e2f6a674b7418f206d730b4b604, type: 3}
 --- !u!4 &1056334576 stripped
 Transform:
@@ -2237,6 +2241,21 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1056334575}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1056334578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056334577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08da7a23680f42f48bb2a398d32c0d79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recoilDistance: 0.1
+  recoilAngle: 10
+  recoilDuration: 0.1
 --- !u!1001 &1106263670
 PrefabInstance:
   m_ObjectHideFlags: 0
