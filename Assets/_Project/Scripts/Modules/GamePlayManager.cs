@@ -13,6 +13,10 @@ namespace NamPhuThuy
         #region Private Serializable Fields
         public PlayerController playerController;
         [SerializeField] private List<EnemyController> enemyList;
+        public GameObject shellContainer;
+        public GameObject projectileContainer;
+        
+        
         #endregion
 
         #region Private Fields
