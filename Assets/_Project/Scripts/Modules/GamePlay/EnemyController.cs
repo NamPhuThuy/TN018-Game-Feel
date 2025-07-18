@@ -31,6 +31,9 @@ namespace NamPhuThuy
         [SerializeField] private float jumpDistanceMax = 3.5f;
 
         [SerializeField] private float health = 5f;
+        [SerializeField] private int healthMin = 3;
+        [SerializeField] private int healthMax = 5;
+        
         
         [Header("Components")]
         public Transform player;
@@ -50,7 +53,7 @@ namespace NamPhuThuy
             if (player == null)
                 player = GamePlayManager.Instance.playerController.transform;
             
-           
+            health = Random.Range(healthMin, healthMax);
             StartCoroutine(JumpTowardsPlayerBezier());
         }
 
@@ -83,6 +86,15 @@ namespace NamPhuThuy
             if (other.CompareTag(ConstTag.PROJECTILE))
             {
                 health--;
+                
+                // Push back effect
+                if (rb != null)
+                {
+                    Vector3 pushDir = (transform.position - other.transform.position).normalized;
+                    float pushForce = 5f; // Adjust as needed
+                    rb.AddForce(pushDir * pushForce, ForceMode.Impulse);
+                }
+                
                 if (health <= 0)
                 {
                     DieProcess();
