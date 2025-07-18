@@ -45,6 +45,7 @@ namespace NamPhuThuy
                 ShootTowardsMouse();
                 DropShell();
                 gunController.ActiveRecoilEffect(); 
+                gunController.PlayShootSFX();
                 fireTimer = 1f / fireRate;
             }
             

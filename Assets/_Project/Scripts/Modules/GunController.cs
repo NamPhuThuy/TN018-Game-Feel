@@ -16,6 +16,10 @@ namespace NamPhuThuy
         [SerializeField] private float recoilDistance = 0.1f;
         [SerializeField] private float recoilAngle = 10f;
         [SerializeField] private float recoilDuration = 0.1f;
+        
+        [Header("SFX")]
+        [SerializeField] private AudioClip shootSFX;
+        [SerializeField] private AudioSource audioSource;
         #endregion
 
         #region Private Fields
@@ -35,10 +39,7 @@ namespace NamPhuThuy
 
         #region Private Methods
         
-        public void ActiveRecoilEffect()
-        {
-            StartCoroutine(RecoilCoroutine());
-        }
+        
         
         private IEnumerator RecoilCoroutine()
         {
@@ -68,6 +69,17 @@ namespace NamPhuThuy
         #endregion
 
         #region Public Methods
+        
+        public void ActiveRecoilEffect()
+        {
+            StartCoroutine(RecoilCoroutine());
+        }
+        
+        public void PlayShootSFX()
+        {
+            audioSource.PlayOneShot(shootSFX);
+        }
+        
         #endregion
 
         #region Editor Methods
