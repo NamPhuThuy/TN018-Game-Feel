@@ -12,6 +12,10 @@ namespace NamPhuThuy
     public class ProjectileController : MonoBehaviour
     {
         #region Private Serializable Fields
+        
+        [SerializeField] private List<ParticleSystem> explosionEffects;
+        [SerializeField] private MeshRenderer meshRenderer;
+        [SerializeField] private MeshCollider meshCollider;
 
         #endregion
 
@@ -33,13 +37,28 @@ namespace NamPhuThuy
         {
             if (other.CompareTag(ConstTag.ENEMY))
             {
-                Destroy(gameObject);
+                meshRenderer.enabled = false;
+                meshCollider.enabled = false;
+                PlayExplosionEffects();
+                Destroy(gameObject, 5f);
             }
         }
 
         #endregion
 
         #region Private Methods
+        
+        private void PlayExplosionEffects()
+        {
+            foreach (var effect in explosionEffects)
+            {
+                if (effect != null)
+                {
+                    effect.Play();
+                }
+            }
+        }
+        
         #endregion
 
         #region Public Methods

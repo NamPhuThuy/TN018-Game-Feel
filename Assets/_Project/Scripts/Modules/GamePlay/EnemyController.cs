@@ -117,8 +117,6 @@ namespace NamPhuThuy
             transform.eulerAngles = new Vector3(startRotation, transform.eulerAngles.y, transform.eulerAngles.z);
         }
 
-        #region Jump with 2nd way
-
         private IEnumerator JumpTowardsPlayerBezier()
         {
             float startDelay = Random.Range(jumpDelayMin, jumpDelayMax);
@@ -133,6 +131,7 @@ namespace NamPhuThuy
                 
                 float jumpDistance = Random.Range(jumpDistanceMin, jumpDistanceMax);
 
+                DoFrontFlip();
                 if (Vector3.Distance(transform.position, player.position) < jumpDistance)
                 {
                     StartCoroutine(JumpBezier(transform.position, player.position));
@@ -173,8 +172,6 @@ namespace NamPhuThuy
             rb.isKinematic = false; // Re-enable physics
             isJumping = false;
         }
-
-        #endregion
         
         #endregion
 

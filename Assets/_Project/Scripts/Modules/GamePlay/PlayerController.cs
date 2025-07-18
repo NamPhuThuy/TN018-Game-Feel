@@ -71,15 +71,10 @@ namespace NamPhuThuy
         
         private void ShootTowardsMouse()
         {
-            Vector3 mouseScreenPos = Input.mousePosition;
-            Vector3 mouseWorldPos = CameraManager.Instance.mainCamera.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, CameraManager.Instance.mainCamera.transform.position.y - transform.position.y));
-            Vector3 toMouse = mouseWorldPos - transform.position;
-
-            // Project toMouse onto the player's right vector (local X)
-            float side = Vector3.Dot(toMouse, transform.right);
-
             // Calculate shoot direction: always forward, but offset to left/right based on mouse
-            Vector3 shootDir = (transform.forward).normalized;
+            
+            Vector3 shootOffset = new Vector3(Random.Range(-0.03f, 0.03f), Random.Range(-0.03f, 0.03f), 0f);
+            Vector3 shootDir = (transform.forward + shootOffset).normalized;
 
             //Quaternion.LookRotation(shootDir)
             GameObject projectile = Instantiate(projectilePrefab, shootPivot.transform.position, Quaternion.identity, GamePlayManager.Instance.projectileContainer.transform);
