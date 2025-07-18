@@ -48,6 +48,8 @@ namespace NamPhuThuy
                 gunController.PlayShootSFX();
                 gunController.PlayMuzzleFlash();
                 
+                CameraManager.Instance.ShakeCamera(0.04f, 0.2f);
+                
                 fireTimer = 1f / fireRate;
             }
             
@@ -70,7 +72,7 @@ namespace NamPhuThuy
         private void ShootTowardsMouse()
         {
             Vector3 mouseScreenPos = Input.mousePosition;
-            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, Camera.main.transform.position.y - transform.position.y));
+            Vector3 mouseWorldPos = CameraManager.Instance.mainCamera.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, CameraManager.Instance.mainCamera.transform.position.y - transform.position.y));
             Vector3 toMouse = mouseWorldPos - transform.position;
 
             // Project toMouse onto the player's right vector (local X)
