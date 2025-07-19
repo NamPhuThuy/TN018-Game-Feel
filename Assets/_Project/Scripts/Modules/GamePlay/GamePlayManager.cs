@@ -23,20 +23,6 @@ namespace NamPhuThuy
 
         #endregion
 
-        #region MonoBehaviour Callbacks
-
-        void Start()
-        {
-            
-        }
-
-        void Update()
-        {
-            
-        }
-
-        #endregion
-
         #region Private Methods
         #endregion
 

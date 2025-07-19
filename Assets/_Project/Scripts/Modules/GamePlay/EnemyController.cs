@@ -38,7 +38,15 @@ namespace NamPhuThuy
         [Header("Components")]
         public Transform player;
         private Rigidbody rb;
+        [SerializeField] private Renderer renderer;
 
+        [Header("Flash Effect")]
+        private Color originalColor;
+        private Material originalMaterial;
+        [SerializeField] private Color flashColor = Color.red;
+        [SerializeField] private Material flashMaterial;
+        private float flashDuration = 0.1f;
+        private float fadeBackDuration = 0.2f;
         #endregion
 
         #region Private Fields
@@ -54,6 +62,10 @@ namespace NamPhuThuy
                 player = GamePlayManager.Instance.playerController.transform;
             
             health = Random.Range(healthMin, healthMax);
+            
+            if (renderer != null)
+                originalMaterial = renderer.material;
+            
             StartCoroutine(JumpTowardsPlayerBezier());
         }
 
@@ -94,6 +106,10 @@ namespace NamPhuThuy
                     float pushForce = 5f; // Adjust as needed
                     rb.AddForce(pushDir * pushForce, ForceMode.Impulse);
                 }
+                
+                // Flash white effect
+                if (renderer != null)
+                    StartCoroutine(IEFlashMaterial());
                 
                 if (health <= 0)
                 {
@@ -146,11 +162,11 @@ namespace NamPhuThuy
                 DoFrontFlip();
                 if (Vector3.Distance(transform.position, player.position) < jumpDistance)
                 {
-                    StartCoroutine(JumpBezier(transform.position, player.position));
+                    StartCoroutine(IEJumpBezier(transform.position, player.position));
                 }
                 else
                 {
-                    StartCoroutine(JumpBezier(transform.position, transform.position + direction.normalized * jumpDistance));
+                    StartCoroutine(IEJumpBezier(transform.position, transform.position + direction.normalized * jumpDistance));
                 }
                 
                 startDelay = Random.Range(jumpDelayMin, jumpDelayMax);
@@ -158,14 +174,14 @@ namespace NamPhuThuy
             }
         }
 
-        private IEnumerator JumpBezier(Vector3 start, Vector3 end)
+        private IEnumerator IEJumpBezier(Vector3 start, Vector3 end)
         {
             isJumping = true;
             rb.isKinematic = true; // Disable physics for smooth movement
 
             // Calculate control point (midpoint, raised by jumpHeight)
-            
             float jumpHeight = Random.Range(jumpHeightMin, jumpHeightMax);
+            
             Vector3 control = (start + end) * 0.5f + Vector3.up * jumpHeight;
 
             float t = 0f;
@@ -183,6 +199,40 @@ namespace NamPhuThuy
             transform.position = end;
             rb.isKinematic = false; // Re-enable physics
             isJumping = false;
+        }
+        
+        private IEnumerator IEFlashWhite()
+        {
+            renderer.material.color = flashColor;
+            yield return Yielders.Get(flashDuration);
+            
+            float elapsed = 0f;
+            while (elapsed < fadeBackDuration)
+            {
+                elapsed += Time.deltaTime;
+                renderer.material.color = Color.Lerp(flashColor, originalColor, elapsed / fadeBackDuration);
+                yield return null;
+            }
+            renderer.material.color = originalColor;
+        }
+        
+        private IEnumerator IEFlashMaterial()
+        {
+            renderer.material = flashMaterial;
+            yield return Yielders.Get(flashDuration);
+
+            float elapsed = 0f;
+            Color startColor = flashMaterial.color;
+            Color endColor = originalMaterial.color;
+
+            while (elapsed < fadeBackDuration)
+            {
+                elapsed += Time.deltaTime;
+                Color lerpedColor = Color.Lerp(startColor, endColor, elapsed / fadeBackDuration);
+                renderer.material.color = lerpedColor;
+                yield return null;
+            }
+            renderer.material = originalMaterial;
         }
         
         #endregion
@@ -203,6 +253,7 @@ namespace NamPhuThuy
             jumpDistanceMax = 2.5f;
 
             health = 5f;
+            flashColor = Color.red;
         }
 
         #endregion

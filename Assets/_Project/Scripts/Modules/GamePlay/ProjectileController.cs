@@ -16,6 +16,7 @@ namespace NamPhuThuy
         [SerializeField] private List<ParticleSystem> explosionEffects;
         [SerializeField] private MeshRenderer meshRenderer;
         [SerializeField] private MeshCollider meshCollider;
+        [SerializeField] private Rigidbody rigidbody;
 
         #endregion
 
@@ -39,6 +40,8 @@ namespace NamPhuThuy
             {
                 meshRenderer.enabled = false;
                 meshCollider.enabled = false;
+                rigidbody.velocity = Vector3.zero;
+                
                 PlayExplosionEffects();
                 Destroy(gameObject, 5f);
             }
