@@ -6,13 +6,13 @@
 ## Mock Up
 <table>
   <tr>
-    <td><img width="1078" height="489" alt="initial_version" src="https://github.com/user-attachments/assets/34545c39-438f-4ec4-aa77-3c5cf515212e" /></td>
+    <td><img width="1078" height="489" alt="initial_version" src="https://github.com/user-attachments/assets/34545c39-438f-4ec4-aa77-3c5cf515212e" width="800px"/></td>
   </tr>
   <tr>
     <th>Initial Version</th>
   </tr>
     <tr>
-    <td><img src="images/improved_version.png" alt="Image description" width="700px"></td>
+    <td><img src="images/improved_version.png" alt="Image description" width="800px"></td>
   </tr>
   <tr>
     <th>Improved Version</th>
