@@ -1,8 +1,12 @@
 <!-- ABOUT THE PROJECT -->
+
+
+
+
 ## Mock Up
 <table>
   <tr>
-    <td><img src="images/initial_version.png" alt="Image description" width="700px"></td>
+    <td><img width="1078" height="489" alt="initial_version" src="https://github.com/user-attachments/assets/34545c39-438f-4ec4-aa77-3c5cf515212e" /></td>
   </tr>
   <tr>
     <th>Initial Version</th>
