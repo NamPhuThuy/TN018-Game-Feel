@@ -1,112 +1,39 @@
-<a id="readme-top"></a>
-
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-
-
-<!-- PROJECT LOGO -->
-<br />
-<div align="center">
-  <a href="https://github.com/NamPhuThuy/Unity-Initial">
-    <img src="images/avatar.png" alt="Logo" width="200">
-  </a>
-
-<h3 align="center">README-Template</h3>
-
-  <p align="center">
-    <a href="https://github.com/NamPhuThuy/Unity-Initial">View Demo</a>
-    ·
-    <a href="https://github.com/NamPhuThuy/Unity-Initial/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
-    ·
-    <a href="https://github.com/NamPhuThuy/Unity-Initial/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
-  </p>
-</div>
-
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage-examples">Usage examples</a></li>
-    <li><a href="#todo">Roadmap</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
-
-
-
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## Mock Up
+<table>
+  <tr>
+    <td><img src="images/initial_version.png" alt="Image description" width="700px"></td>
+  </tr>
+  <tr>
+    <th>Initial Version</th>
+  </tr>
+    <tr>
+    <td><img src="images/improved_version.png" alt="Image description" width="700px"></td>
+  </tr>
+  <tr>
+    <th>Improved Version</th>
+  </tr>
+</table>
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![game_feel_upgraded_02.gif](images/game_feel_upgraded_02.gif)
 
-This is the short description about the project. Technologies, tools be used 
- :smile:
+## Improvement Steps
+- Step 1: Add **real** bullets 
+- Step 2: Drop **bullet shell** when shooting
+- Step 3: Add **Recoil effect** when shooting (the gun moves back a bit)
+- Step 4: Add a **sound effect** when shooting
+- Step 5: Add Muzzle Flash when shooting
+  - Muzzle Flash is a visual effect that simulates the bright flash of light produced by the muzzle of a firearm when it is fired.
+- Step 6: Trigger **Camera Shake** when shooting
+- Step 7: Add **small explosion** when the bullet hits the target
+- Step 8: Trigger **Damage Flash effect** when the enemy got hit
+- Step 9: Add Bullet-trailing effect
+- Step 10: Add Background music to create cinematic feel
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+## Top contributors:
 
-
-
-### Built With
-Major frameworks/libraries used in project
-* [![Unity][Unity.com]][Unity-url]
-* [![CSharp][CSharp.com]][CSharp-url]
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- GETTING STARTED -->
-## Getting Started
-
-Instructions to setup this project locally.
-
-### Prerequisites
-
-### Installation
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- USAGE EXAMPLES -->
-## Usage examples
-
-Some useful examples of how this project can be used (add screenshots, code examples, demo works, resource links..)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- ROADMAP -->
-## Todo
-
-- [x] Task 1
-- [x] Task 2
-- [ ] Task 3
-    - [ ] Subtask 1
-    - [ ] Subtask 2
-
-See the [open issues](https://github.com/NamPhuThuy/Unity-Initial/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-### Top contributors:
-
-<a href="https://github.com/NamPhuThuy/Unity-Initial/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=NamPhuThuy/Unity-Initial" alt="contrib.rocks image" />
+<a href="https://github.com/NamPhuThuy/TN018-Game-Feel/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=NamPhuThuy/TN018-Game-Feel" alt="contrib.rocks image" />
 </a>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -121,27 +48,18 @@ See the [open issues](https://github.com/NamPhuThuy/Unity-Initial/issues) for a 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-Helpful resources, credits
-* [GitHub Pages](https://github.com/NamPhuThuy)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/NamPhuThuy/Unity-Initial.svg?style=for-the-badge
-[contributors-url]: https://github.com/NamPhuThuy/Unity-Initial/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/NamPhuThuy/Unity-Initial.svg?style=for-the-badge
-[forks-url]: https://github.com/NamPhuThuy/Unity-Initial/network/members
-[stars-shield]: https://img.shields.io/github/stars/NamPhuThuy/Unity-Initial.svg?style=for-the-badge
-[stars-url]: https://github.com/NamPhuThuy/Unity-Initial/stargazers
-[issues-shield]: https://img.shields.io/github/issues/NamPhuThuy/Unity-Initial.svg?style=for-the-badge
-[issues-url]: https://github.com/NamPhuThuy/Unity-Initial/issues
-[license-shield]: https://img.shields.io/github/license/NamPhuThuy/Unity-Initial.svg?style=for-the-badge
-[license-url]: https://github.com/NamPhuThuy/Unity-Initial/blob/main/LICENSE
+[contributors-shield]: https://img.shields.io/github/contributors/NamPhuThuy/TN018-Game-Feel.svg?style=for-the-badge
+[contributors-url]: https://github.com/NamPhuThuy/TN018-Game-Feel/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/NamPhuThuy/TN018-Game-Feel.svg?style=for-the-badge
+[forks-url]: https://github.com/NamPhuThuy/TN018-Game-Feel/network/members
+[stars-shield]: https://img.shields.io/github/stars/NamPhuThuy/TN018-Game-Feel.svg?style=for-the-badge
+[stars-url]: https://github.com/NamPhuThuy/TN018-Game-Feel/stargazers
+[issues-shield]: https://img.shields.io/github/issues/NamPhuThuy/TN018-Game-Feel.svg?style=for-the-badge
+[issues-url]: https://github.com/NamPhuThuy/TN018-Game-Feel/issues
+[license-shield]: https://img.shields.io/github/license/NamPhuThuy/TN018-Game-Feel.svg?style=for-the-badge
+[license-url]: https://github.com/NamPhuThuy/TN018-Game-Feel/blob/main/LICENSE
 
 <!-- Contact -->
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
