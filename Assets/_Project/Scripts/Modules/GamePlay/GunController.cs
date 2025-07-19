@@ -36,6 +36,9 @@ namespace NamPhuThuy
         {
             gunOriginalPos = transform.localPosition;
             gunOriginalRot = transform.localRotation;
+            
+            // Audio Source
+            audioSource.volume = 0.1f;
         }
 
         #endregion
@@ -80,6 +83,7 @@ namespace NamPhuThuy
         
         public void PlayShootSFX()
         {
+            
             audioSource.PlayOneShot(shootSFX);
         }
         
