@@ -19,7 +19,10 @@
   </tr>
 </table>
 
-![game_feel_upgraded_02.gif](images/game_feel_upgraded_02.gif)
+https://github.com/user-attachments/assets/2707ba79-cb56-4909-b04e-182c5f0dea99  
+
+
+
 
 ## Improvement Steps
 - Step 1: Add **real** bullets 
