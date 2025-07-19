@@ -21,6 +21,7 @@ namespace NamPhuThuy
         [SerializeField] private TextMeshProUGUI bulletCountText;
         
         [SerializeField] private Button resetButton;
+        [SerializeField] private Button toggleOtherCamButton;
 
         [Header("Stats")] 
         [SerializeField] private int enemyKilledCount = 0;
@@ -56,17 +57,13 @@ namespace NamPhuThuy
         private void OnEnable()
         {
             resetButton.onClick.AddListener(OnClickReset);
+            toggleOtherCamButton.onClick.AddListener(OnClickToggleOtherCam);
         }
 
         private void OnDisable()
         {
-            resetButton.onClick.AddListener(OnClickReset);
-
-        }
-
-        private void OnClickReset()
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            resetButton.onClick.RemoveListener(OnClickReset);
+            toggleOtherCamButton.onClick.RemoveListener(OnClickToggleOtherCam);
         }
 
         #endregion
@@ -79,6 +76,22 @@ namespace NamPhuThuy
             bulletCountText.text = $"Bullets Shot: {bulletCount}";
         }
         
+        #endregion
+
+        #region Button Events
+
+        
+
+        private void OnClickReset()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        
+        private void OnClickToggleOtherCam()
+        {
+            CameraManager.Instance.ToggleOtherCamera();
+        }
+
         #endregion
 
         #region Public Methods

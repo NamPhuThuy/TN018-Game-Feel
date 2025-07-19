@@ -12,6 +12,7 @@ namespace NamPhuThuy
     {
         #region Private Serializable Fields
         public Camera mainCamera;
+        public GameObject otherCameraPerspective;
 
         #endregion
 
@@ -63,6 +64,18 @@ namespace NamPhuThuy
         }
 
         #endregion
+
+        public void ToggleOtherCamera()
+        {
+            if (otherCameraPerspective != null)
+            {
+                otherCameraPerspective.SetActive(!otherCameraPerspective.activeSelf);
+            }
+            else
+            {
+                Debug.LogWarning("Other camera perspective is not assigned in CameraManager.");
+            }
+        }
     }
 
     #if UNITY_EDITOR
