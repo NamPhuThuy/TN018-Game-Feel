@@ -8,9 +8,12 @@ using UnityEditor;
 namespace NamPhuThuy
 {
     
-    public class GUIManager : MonoBehaviour
+    public class GUIManager : Singleton<GUIManager>
     {
         #region Private Serializable Fields
+        
+        [SerializeField] private GUIHUD guiHUD;
+        public GUIHUD GUIHUD => guiHUD;
 
         #endregion
 

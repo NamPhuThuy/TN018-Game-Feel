@@ -17,7 +17,6 @@ namespace NamPhuThuy
         [Header("Stats")]
         [SerializeField] private float fireRate = 2f; //shots per sec
         private float fireTimer = 0f;
-        public int projectileShot = 0;
         
         #endregion
 
@@ -46,7 +45,7 @@ namespace NamPhuThuy
                 
                 CameraManager.Instance.ShakeCamera(0.04f, 0.2f);
 
-                projectileShot++;
+                GUIManager.Instance.GUIHUD.BulletCount++;
                 
                 fireTimer = 1f / fireRate;
             }

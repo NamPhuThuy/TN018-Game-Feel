@@ -45,7 +45,9 @@ namespace NamPhuThuy
         private void SpawnEnemy()
         {
             Vector3 position = spawnPoint != null ? spawnPoint.position : transform.position;
-            Instantiate(enemyPrefab, position, Quaternion.identity, transform);
+            Vector3 randomOffset = new Vector3(Random.Range(-4.5f, 4.5f), 0, Random.Range(-3f, 3f));
+            
+            Instantiate(enemyPrefab, position + randomOffset, Quaternion.identity, transform);
         }
         
         #endregion

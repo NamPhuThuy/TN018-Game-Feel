@@ -1,6 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -12,6 +16,35 @@ namespace NamPhuThuy
     {
         #region Private Serializable Fields
 
+        [Header("Text Settings")] 
+        [SerializeField] private TextMeshProUGUI enemyKilledText;
+        [SerializeField] private TextMeshProUGUI bulletCountText;
+        
+        [SerializeField] private Button resetButton;
+
+        [Header("Stats")] 
+        [SerializeField] private int enemyKilledCount = 0;
+        public int EnemyKilledCount
+        {
+            get => enemyKilledCount;
+            set
+            {
+                enemyKilledCount = value;
+                UpdateUI();
+            }
+        }
+        
+        [SerializeField] private int bulletCount = 0;
+        public int BulletCount 
+        {
+            get => bulletCount;
+            set
+            {
+                bulletCount = value;
+                UpdateUI();
+            }
+        }
+        
         #endregion
 
         #region Private Fields
@@ -20,19 +53,32 @@ namespace NamPhuThuy
 
         #region MonoBehaviour Callbacks
 
-        void Start()
+        private void OnEnable()
         {
-            
+            resetButton.onClick.AddListener(OnClickReset);
         }
 
-        void Update()
+        private void OnDisable()
         {
-            
+            resetButton.onClick.AddListener(OnClickReset);
+
+        }
+
+        private void OnClickReset()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         #endregion
 
         #region Private Methods
+
+        private void UpdateUI()
+        {
+            enemyKilledText.text = $"Enemies Killed: {enemyKilledCount}";
+            bulletCountText.text = $"Bullets Shot: {bulletCount}";
+        }
+        
         #endregion
 
         #region Public Methods

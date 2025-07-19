@@ -125,6 +125,7 @@ namespace NamPhuThuy
         #region Private Methods
         private void DieProcess()
         {
+            GUIManager.Instance.GUIHUD.EnemyKilledCount++;
             Destroy(gameObject);
         }
         
