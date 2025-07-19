@@ -12,12 +12,18 @@ namespace NamPhuThuy
     public class ProjectileController : RecycleObject
     {
         #region Private Serializable Fields
-        
+        [Header("Components")]
+        [SerializeField] private TrailRenderer trailRenderer;
+        [SerializeField] private Color trailColor = Color.yellow;
+
         [SerializeField] private List<ParticleSystem> explosionEffects;
         [SerializeField] private MeshRenderer meshRenderer;
         [SerializeField] private MeshCollider meshCollider;
         [SerializeField] private Rigidbody rigidbody;
 
+        
+        [Header("Stats")]
+        [SerializeField] private float deystroyDistance = 30f; 
         #endregion
 
         #region Private Fields
@@ -32,20 +38,17 @@ namespace NamPhuThuy
             meshCollider.enabled = true;
         }
 
-
-        private void Update()
+        private void Start()
         {
-            if (Vector3.Distance(transform.position, GamePlayManager.Instance.playerController.transform.position) > 30f)
-            {
-                //FIRST WAY
-                // Destroy(gameObject);
-                
-                //SECOND WAY
-                // Recycle();
-                
-                // THIRD WAY
-                GamePlayManager.Instance.projectilePooler.ReturnProjectile(this);
-            }
+            Invoke(nameof(RecycleProj), 9f);
+            
+            // Setup for trail renderer
+            trailRenderer.time = 0.7f; // Duration of the trail
+            trailRenderer.startWidth = 0.025f;
+            trailRenderer.endWidth = 0.008f;
+            // trailRenderer.material = new Material(Shader.Find("Sprites/Default"));
+            trailRenderer.startColor = trailColor;
+            trailRenderer.endColor = Color.clear;
         }
 
         private void OnTriggerEnter(Collider other)
