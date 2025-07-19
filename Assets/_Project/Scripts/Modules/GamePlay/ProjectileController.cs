@@ -9,7 +9,7 @@ using UnityEditor;
 namespace NamPhuThuy
 {
     
-    public class ProjectileController : MonoBehaviour
+    public class ProjectileController : RecycleObject
     {
         #region Private Serializable Fields
         
@@ -26,11 +26,25 @@ namespace NamPhuThuy
 
         #region MonoBehaviour Callbacks
 
+        private void OnEnable()
+        {
+            meshRenderer.enabled = true;
+            meshCollider.enabled = true;
+        }
+
+
         private void Update()
         {
             if (Vector3.Distance(transform.position, GamePlayManager.Instance.playerController.transform.position) > 30f)
             {
-                Destroy(gameObject);
+                //FIRST WAY
+                // Destroy(gameObject);
+                
+                //SECOND WAY
+                // Recycle();
+                
+                // THIRD WAY
+                GamePlayManager.Instance.projectilePooler.ReturnProjectile(this);
             }
         }
 
@@ -43,7 +57,12 @@ namespace NamPhuThuy
                 rigidbody.velocity = Vector3.zero;
                 
                 PlayExplosionEffects();
-                Destroy(gameObject, 5f);
+                
+                // FIRST WAY
+                // Destroy(gameObject, 5f);
+                
+                
+                Invoke(nameof(RecycleProj), 3f);
             }
         }
 
@@ -60,6 +79,11 @@ namespace NamPhuThuy
                     effect.Play();
                 }
             }
+        }
+
+        private void RecycleProj()
+        {
+            GamePlayManager.Instance.projectilePooler.ReturnProjectile(this);
         }
         
         #endregion

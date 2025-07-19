@@ -17,6 +17,7 @@ namespace NamPhuThuy
         [Header("Stats")]
         [SerializeField] private float fireRate = 2f; //shots per sec
         private float fireTimer = 0f;
+        public int projectileShot = 0;
         
         #endregion
 
@@ -25,17 +26,12 @@ namespace NamPhuThuy
         public GunController gunController;
         public GameObject shootPivot;
         
-        public GameObject projectilePrefab;
+        public RecycleObject projectilePrefab;
         public ShellController bulletShellPrefab;
         
         #endregion
 
         #region MonoBehaviour Callbacks
-
-        void Start()
-        {
-            
-        }
 
         void Update()
         {
@@ -49,6 +45,8 @@ namespace NamPhuThuy
                 gunController.PlayMuzzleFlash();
                 
                 CameraManager.Instance.ShakeCamera(0.04f, 0.2f);
+
+                projectileShot++;
                 
                 fireTimer = 1f / fireRate;
             }
@@ -76,10 +74,18 @@ namespace NamPhuThuy
             Vector3 shootOffset = new Vector3(Random.Range(-0.03f, 0.03f), Random.Range(-0.03f, 0.03f), 0f);
             Vector3 shootDir = (transform.forward + shootOffset).normalized;
 
-            //Quaternion.LookRotation(shootDir)
-            GameObject projectile = Instantiate(projectilePrefab, shootPivot.transform.position, Quaternion.identity, GamePlayManager.Instance.projectileContainer.transform);
+            // FIRST WAY
+            // ProjectileController projectile = Instantiate(projectilePrefab, shootPivot.transform.position, Quaternion.identity, GamePlayManager.Instance.projectileContainer.transform);
             
+            // SECOND WAY
+            // RecycleObject projectile = PoolingManager.Instance.Spawn(projectilePrefab, GamePlayManager.Instance.projectilePooler.transform);
+            
+            // THIRD WAY
+            ProjectileController projectile = GamePlayManager.Instance.projectilePooler.GetProjectile(shootPivot.transform.position, Quaternion.identity); 
+            
+            projectile.transform.position = shootPivot.transform.position;
             projectile.transform.localEulerAngles = new Vector3(90f, 0f, 90f);
+            
             Rigidbody rb = projectile.GetComponent<Rigidbody>();
             if (rb != null)
             {

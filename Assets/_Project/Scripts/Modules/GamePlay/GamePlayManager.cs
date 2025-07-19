@@ -14,7 +14,7 @@ namespace NamPhuThuy
         public PlayerController playerController;
         [SerializeField] private List<EnemyController> enemyList;
         public GameObject shellContainer;
-        public GameObject projectileContainer;
+        public ProjectilePooler projectilePooler;
         
         
         #endregion

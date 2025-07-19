@@ -1478,9 +1478,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   closestEnemy: {fileID: 0}
   fireRate: 8
+  projectileShot: 0
   gunController: {fileID: 1056334578}
   shootPivot: {fileID: 1181369228}
-  projectilePrefab: {fileID: 8211813555336685281, guid: 6bd18011d42fbf943abe017a3d3a9840,
+  projectilePrefab: {fileID: 6149846663900063029, guid: 6bd18011d42fbf943abe017a3d3a9840,
     type: 3}
   bulletShellPrefab: {fileID: 3944500108563112206, guid: c7704bd567b3bd140b06be95fde8d917,
     type: 3}
@@ -1493,8 +1494,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 581444033}
+  - component: {fileID: 581444034}
   m_Layer: 0
-  m_Name: ProjectileContainer
+  m_Name: ProjectilePooler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1515,12 +1517,71 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1847587037}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &581444034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581444032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f5c348155da932479165895be7eb80c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 6149846663900063029, guid: 6bd18011d42fbf943abe017a3d3a9840,
+    type: 3}
+  poolSize: 20
 --- !u!4 &592292955 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1936136191230382920, guid: 1dc0888a9007bcf4bb2d7ce6dc8974ce,
     type: 3}
   m_PrefabInstance: {fileID: 6883095926609393230}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &619934466
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 619934467}
+  - component: {fileID: 619934468}
+  m_Layer: 0
+  m_Name: PoolingManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &619934467
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619934466}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.248532, y: 4.2032022, z: -5.740097}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &619934468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619934466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1ed9ed6c34084249818d26c376c45d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &657659025
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4312,7 +4373,7 @@ MonoBehaviour:
   playerController: {fileID: 419121731}
   enemyList: []
   shellContainer: {fileID: 1847449191}
-  projectileContainer: {fileID: 581444032}
+  projectilePooler: {fileID: 581444034}
 --- !u!1 &1944690948
 GameObject:
   m_ObjectHideFlags: 0
@@ -4833,3 +4894,4 @@ SceneRoots:
   - {fileID: 1847587037}
   - {fileID: 6168585741799326142}
   - {fileID: 1031930425}
+  - {fileID: 619934467}
