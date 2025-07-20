@@ -125,7 +125,7 @@ MonoBehaviour:
   jumpDistanceMax: 2
   health: 5
   healthMin: 2
-  healthMax: 4
+  healthMax: 3
   player: {fileID: 0}
   renderer: {fileID: 2718035340176468881}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
