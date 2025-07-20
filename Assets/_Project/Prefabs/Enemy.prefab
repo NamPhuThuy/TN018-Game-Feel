@@ -121,13 +121,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpHeightMin: 2
   jumpHeightMax: 4.5
-  jumpDelayMin: 1
-  jumpDelayMax: 2
-  jumpDistanceMin: 1.4
-  jumpDistanceMax: 2.5
+  jumpDistanceMin: 1
+  jumpDistanceMax: 2
   health: 5
-  healthMin: 3
-  healthMax: 5
+  healthMin: 2
+  healthMax: 4
   player: {fileID: 0}
   renderer: {fileID: 2718035340176468881}
   flashColor: {r: 1, g: 0, b: 0, a: 1}

@@ -1620,7 +1620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   closestEnemy: {fileID: 0}
-  fireRate: 8
+  fireRate: 9
   gunController: {fileID: 1056334578}
   shootPivot: {fileID: 1181369228}
   projectilePrefab: {fileID: 6149846663900063029, guid: 6bd18011d42fbf943abe017a3d3a9840,

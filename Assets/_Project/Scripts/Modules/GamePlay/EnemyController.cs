@@ -246,10 +246,12 @@ namespace NamPhuThuy
             jumpHeightMin = 2f;
             jumpHeightMax = 4.5f;
         
-            jumpDistanceMin = 1.4f;
-            jumpDistanceMax = 2.5f;
+            jumpDistanceMin = 1f;
+            jumpDistanceMax = 2f;
 
             health = 5f;
+			healthMin = 3;
+			healthMax = 4;
             flashColor = Color.red;
         }
 
