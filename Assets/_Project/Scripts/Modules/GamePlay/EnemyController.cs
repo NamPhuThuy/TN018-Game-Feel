@@ -14,7 +14,9 @@ namespace NamPhuThuy
     public class EnemyController : MonoBehaviour
     {
         #region Private Serializable Fields
-        
+
+        #region Stats
+
         [Header("Stats")]
         private float flipChance = 0.3f; // 30% chance to flip
         
@@ -24,21 +26,29 @@ namespace NamPhuThuy
 
         private bool isJumping = false;
         
-        [SerializeField] private float jumpDelayMin = 0.4f;
-        [SerializeField] private float jumpDelayMax = 1.2f;
+        private float jumpDelayMin = 0.5f;
+        private float jumpDelayMax = 1f;
         
-        [SerializeField] private float jumpDistanceMin = 2f;
-        [SerializeField] private float jumpDistanceMax = 3.5f;
+        [SerializeField] private float jumpDistanceMin = 1.4f;
+        [SerializeField] private float jumpDistanceMax = 2.5f;
 
         [SerializeField] private float health = 5f;
         [SerializeField] private int healthMin = 3;
         [SerializeField] private int healthMax = 5;
-        
-        
+
+        #endregion
+
+
+        #region Components
+
         [Header("Components")]
         public Transform player;
         private Rigidbody rb;
         [SerializeField] private Renderer renderer;
+
+        #endregion
+
+        #region Flash Effect
 
         [Header("Flash Effect")]
         private Color originalColor;
@@ -47,6 +57,8 @@ namespace NamPhuThuy
         [SerializeField] private Material flashMaterial;
         private float flashDuration = 0.1f;
         private float fadeBackDuration = 0.2f;
+#endregion
+
         #endregion
 
         #region Private Fields
@@ -97,8 +109,6 @@ namespace NamPhuThuy
         {
             if (other.CompareTag(ConstTag.PROJECTILE))
             {
-                health--;
-                
                 // Push back effect
                 if (rb != null)
                 {
@@ -111,10 +121,7 @@ namespace NamPhuThuy
                 if (renderer != null)
                     StartCoroutine(IEFlashMaterial());
                 
-                if (health <= 0)
-                {
-                    DieProcess();
-                }
+                TakeDamage(1);
             }
         }
 
@@ -127,6 +134,16 @@ namespace NamPhuThuy
         {
             GUIManager.Instance.GUIHUD.EnemyKilledCount++;
             Destroy(gameObject);
+        }
+
+        private void TakeDamage(int amount)
+        {
+            health -= amount;
+            
+            if (health <= 0)
+            {
+                DieProcess();
+            }
         }
         
         private IEnumerator DoFrontFlip()
@@ -148,19 +165,18 @@ namespace NamPhuThuy
 
         private IEnumerator JumpTowardsPlayerBezier()
         {
-            float startDelay = Random.Range(jumpDelayMin, jumpDelayMax);
-            startDelay /= 2f;
-            yield return new WaitForSeconds(startDelay);
-            
             while (true)
             {
+                float startDelay = Random.Range(jumpDelayMin, jumpDelayMax);
+                yield return Yielders.Get(startDelay);
+                
                 if (player == null || isJumping) continue;
                 
                 Vector3 direction = (player.position - transform.position).normalized;
                 
                 float jumpDistance = Random.Range(jumpDistanceMin, jumpDistanceMax);
 
-                DoFrontFlip();
+                // StartCoroutine(DoFrontFlip());
                 if (Vector3.Distance(transform.position, player.position) < jumpDistance)
                 {
                     StartCoroutine(IEJumpBezier(transform.position, player.position));
@@ -169,9 +185,6 @@ namespace NamPhuThuy
                 {
                     StartCoroutine(IEJumpBezier(transform.position, transform.position + direction.normalized * jumpDistance));
                 }
-                
-                startDelay = Random.Range(jumpDelayMin, jumpDelayMax);
-                yield return new WaitForSeconds(startDelay);
             }
         }
 
@@ -202,21 +215,6 @@ namespace NamPhuThuy
             isJumping = false;
         }
         
-        private IEnumerator IEFlashWhite()
-        {
-            renderer.material.color = flashColor;
-            yield return Yielders.Get(flashDuration);
-            
-            float elapsed = 0f;
-            while (elapsed < fadeBackDuration)
-            {
-                elapsed += Time.deltaTime;
-                renderer.material.color = Color.Lerp(flashColor, originalColor, elapsed / fadeBackDuration);
-                yield return null;
-            }
-            renderer.material.color = originalColor;
-        }
-        
         private IEnumerator IEFlashMaterial()
         {
             renderer.material = flashMaterial;
@@ -245,8 +243,6 @@ namespace NamPhuThuy
 
         public void ResetValues()
         {
-            jumpDelayMin = 1f;
-            jumpDelayMax = 2f;
             jumpHeightMin = 2f;
             jumpHeightMax = 4.5f;
         
