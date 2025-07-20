@@ -122,9 +122,9 @@ MonoBehaviour:
   jumpHeightMin: 2
   jumpHeightMax: 4.5
   jumpDistanceMin: 1
-  jumpDistanceMax: 2
+  jumpDistanceMax: 1.7
   health: 5
-  healthMin: 2
+  healthMin: 1
   healthMax: 3
   player: {fileID: 0}
   renderer: {fileID: 2718035340176468881}

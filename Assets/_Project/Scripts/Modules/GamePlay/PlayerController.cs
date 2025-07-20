@@ -17,7 +17,10 @@ namespace NamPhuThuy
         [Header("Stats")]
         [SerializeField] private float fireRate = 2f; //shots per sec
         private float fireTimer = 0f;
+        [SerializeField] private float rotationSpeed = 0.5f;
         
+        [Header("Flags")]
+        [SerializeField] private bool isShootable = true; // Can the player shoot?
         #endregion
 
         #region Public Fields
@@ -35,7 +38,7 @@ namespace NamPhuThuy
         void Update()
         {
             fireTimer -= Time.deltaTime;
-            if (fireTimer <= 0f)
+            if (fireTimer <= 0f && isShootable)
             {
                 ShootTowardsMouse();
                 DropShell();
@@ -50,13 +53,21 @@ namespace NamPhuThuy
                 fireTimer = 1f / fireRate;
             }
             
-            closestEnemy = GamePlayManager.Instance.GetClosestEnemy(transform.position);
+            EnemyController closestEnemy = GamePlayManager.Instance.GetClosestEnemy(transform.position);
+        
             if (closestEnemy != null)
             {
                 Vector3 lookPos = closestEnemy.transform.position - transform.position;
                 // lookPos.y = 0; // Optional: keep only horizontal rotation
+            
                 if (lookPos != Vector3.zero)
-                    transform.rotation = Quaternion.LookRotation(lookPos);
+                {
+                    // Calculate the target rotation
+                    Quaternion targetRotation = Quaternion.LookRotation(lookPos);
+                
+                    // Smoothly rotate towards the target using Lerp
+                    transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                }
             }
         }
 
@@ -136,7 +147,8 @@ namespace NamPhuThuy
 
         public void ResetValues()
         {
-            fireRate = 8f; // Reset to default value
+            fireRate = 9f; // Reset to default value
+            rotationSpeed = 16f;
         }
 
         #endregion

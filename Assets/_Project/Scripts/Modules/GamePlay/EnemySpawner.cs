@@ -61,7 +61,7 @@ namespace NamPhuThuy
 
         public void ResetValues()
         {
-            
+            spawnInterval = 1f;
         }
 
         #endregion
