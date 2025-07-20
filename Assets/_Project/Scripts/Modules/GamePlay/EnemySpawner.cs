@@ -14,7 +14,7 @@ namespace NamPhuThuy
 
         [SerializeField] private EnemyController enemyPrefab;
         [SerializeField] private float spawnInterval = 1.5f;
-        [SerializeField] private Transform spawnPoint;
+        [SerializeField] private List<Transform> spawnPoints;
         
         #endregion
 
@@ -44,10 +44,12 @@ namespace NamPhuThuy
 
         private void SpawnEnemy()
         {
-            Vector3 position = spawnPoint != null ? spawnPoint.position : transform.position;
-            Vector3 randomOffset = new Vector3(Random.Range(-4.5f, 4.5f), 0, Random.Range(-3f, 3f));
+            int spawnIndex = Random.Range(0, spawnPoints.Count);
+            Vector3 spawnPosition = spawnPoints.Count > 0 ? spawnPoints[spawnIndex].position : transform.position;
             
-            Instantiate(enemyPrefab, position + randomOffset, Quaternion.identity, transform);
+            Vector3 randomOffset = new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f));
+            
+            Instantiate(enemyPrefab, spawnPosition + randomOffset, Quaternion.identity, transform);
         }
         
         #endregion
